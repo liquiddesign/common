@@ -1,8 +1,7 @@
 <?php
 
-namespace Common;
+namespace Common\Latte;
 
-use Latte;
 use Nette\Utils\Html;
 
 class ImageMacro extends Latte\Macros\MacroSet

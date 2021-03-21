@@ -3,10 +3,10 @@
 	"description": "Ⓒ Common jsou základní třídy pro balíčky defaultu",
 	"license": "MIT",
 	"autoload": {
-		"psr-4": {"Admin\\": "src/"}
+		"psr-4": {"Common\\": "src/"}
 	},
 	"autoload-dev": {
-		"psr-4": { "Admin\\Tests\\": "tests/" }
+		"psr-4": { "Common\\Tests\\": "tests/" }
 	},
 	"require":
 	{
