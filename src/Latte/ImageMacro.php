@@ -4,7 +4,7 @@ namespace Common\Latte;
 
 use Nette\Utils\Html;
 
-class ImageMacro extends Latte\Macros\MacroSet
+class ImageMacro extends \Latte\Macros\MacroSet
 {
 	public static function install(\Latte\Compiler $compiler)
 	{
@@ -17,7 +17,7 @@ class ImageMacro extends Latte\Macros\MacroSet
 		// data-src
 		// unitr Html::el( ,[]) . Html::el()
 		
-		$set->addMacro('image', function (\Latte\MacroNode $node, Latte\PhpWriter $writer) {
+		$set->addMacro('image', function (\Latte\MacroNode $node, \Latte\PhpWriter $writer) {
 			$args = \explode(', ', $node->args);
 			
 			if ($args < 1) {
