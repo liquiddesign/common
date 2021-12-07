@@ -53,8 +53,7 @@ class ImageMacro extends \Latte\Macros\MacroSet
 			}
 		
 			$phpCode = 'echo "<img ';
-			$phpCode .= 'src=\'{$presenter->template->pubUrl}/img/image-placeholder.png\' ';
-			$phpCode .= "data-src=$parametersValues->src ";
+			$phpCode .= "src=$parametersValues->src ";
 			$phpCode .= "alt=$parametersValues->alt ";
 			$phpCode .= 'loading=\"lazy\" ';
 
