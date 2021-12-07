@@ -2,13 +2,14 @@
 
 namespace Common\Latte;
 
-use Nette\Utils\Html;
+use Latte\CompileException;
+use Latte\Macros\MacroSet;
 
 class ImageMacro extends \Latte\Macros\MacroSet
 {
-	public static function install(\Latte\Compiler $compiler)
+	public static function install(\Latte\Compiler $compiler): MacroSet
 	{
-		$set = new static($compiler);
+		$set = new ImageMacro($compiler);
 
 		// predelat na:
 		// volani klasicky pole {img src=>$image->getUrl(),class=>'aaaa'}
@@ -20,28 +21,25 @@ class ImageMacro extends \Latte\Macros\MacroSet
 		$set->addMacro('image', function (\Latte\MacroNode $node, \Latte\PhpWriter $writer) {
 			$args = \explode(', ', $node->args);
 			
-			if ($args < 1) {
-				throw new Latte\CompileException('Too few arguments arguments!');
-			}
-
 			$parametersState = [
 				'src' => true,
 				'class' => false,
 				'alt' => true,
-				'style' => false
+				'style' => false,
 			];
 
 			$parametersValues = (object)[
 				'src' => null,
 				'class' => null,
 				'alt' => null,
-				'style' => null
+				'style' => null,
 			];
 
 			foreach ($args as $arg) {
 				[$key, $value] = \explode('=', $arg);
+
 				if (\array_search($key, \array_keys($parametersState)) === false) {
-					throw new Latte\CompileException("Unknown parameter '$key'!");
+					throw new CompileException("Unknown parameter '$key'!");
 				}
 
 				$parametersState[$key] = false;
@@ -50,7 +48,7 @@ class ImageMacro extends \Latte\Macros\MacroSet
 
 			foreach ($parametersState as $key => $value) {
 				if ($value) {
-					throw new Latte\CompileException("Required parameter '$key' missing!");
+					throw new CompileException("Required parameter '$key' missing!");
 				}
 			}
 		
