@@ -11,19 +11,8 @@
 	"require":
 	{
 		"php":">=7.4",
-		"nette/application":"^3.0",
-		"nette/security":"^3.0",
-		"nette/forms":"^3.0",
-		"nette/utils":"^3.0",
-		"nette/di":"^3.0",
-		"nette/component-model":"^3.0",
+		"latte/latte":"^2.0",
 		"liquiddesign/storm": "~1.0",
-		"liquiddesign/forms": "@dev",
-		"liquiddesign/security": "@dev",
-		"liquiddesign/messages": "@dev",
-		"liquiddesign/translator": "@dev",
-		"liquiddesign/pages": "@dev",
-		"liquiddesign/grid": "@dev",
 		"ext-pdo": "*"
 	},
 	"require-dev":
@@ -32,7 +21,6 @@
 		"tracy/tracy":"*",
 		"composer/composer": "*",
 		"liquiddesign/codestyle": "~1.0",
-		"liquiddesign/migrator": "@dev",
 		"phpstan/phpstan": "*"
 	},
 	"scripts": {
@@ -42,5 +30,10 @@
 		"tester": "tester tests/Cases/*.phpt  -c tests/php.ini --setup tests/setup.php",
 		"aux-sync-database": "Migrator\\Scripts::syncDatabase",
 		"sync-database": "@aux-sync-database Security\\Tests\\Bootstrap"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
