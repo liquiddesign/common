@@ -2,6 +2,8 @@
 	"name": "liquiddesign/common",
 	"description": "Ⓒ Common jsou základní třídy pro balíčky defaultu",
 	"license": "MIT",
+	"prefer-stable": true,
+	"minimum-stability": "dev",
 	"autoload": {
 		"psr-4": {"Common\\": "src/"}
 	},
@@ -10,8 +12,8 @@
 	},
 	"require":
 	{
-		"php":">=7.4",
-		"liquiddesign/storm": "~1.0",
+		"php":">=8.0",
+		"liquiddesign/storm": "~2.0",
 		"ext-pdo": "*"
 	},
 	"require-dev":
@@ -19,7 +21,7 @@
 		"nette/tester":"*",
 		"tracy/tracy":"*",
 		"composer/composer": "*",
-		"liquiddesign/codestyle": "~1.0",
+		"liquiddesign/codestyle": "~3.0",
 		"phpstan/phpstan": "*"
 	},
 	"scripts": {
@@ -28,7 +30,13 @@
 		"phpcsfix": "phpcbf --standard=ruleset.xml --ignore=assets src",
 		"tester": "tester tests/Cases/*.phpt  -c tests/php.ini --setup tests/setup.php",
 		"aux-sync-database": "Migrator\\Scripts::syncDatabase",
-		"sync-database": "@aux-sync-database Security\\Tests\\Bootstrap"
+		"sync-database": "@aux-sync-database Security\\Tests\\Bootstrap",
+		"check-commit": "@php ./vendor/liquiddesign/codestyle/src/scripts/check-last-commit.php",
+		"changelog": "conventional-changelog",
+		"release": "@changelog --commit",
+		"release:patch": "@changelog --patch --commit",
+		"release:minor": "@changelog --minor --commit",
+		"release:major": "@changelog --major --commit"
 	},
 	"config": {
 		"allow-plugins": {
